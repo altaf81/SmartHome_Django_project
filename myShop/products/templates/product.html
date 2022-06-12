@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="{{ object.image_url }}" class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+            <p class="lead">
+              <span class="mr-1">
+                {{ object.phoneName }}
+              </span>
+            </p>
+            <p>
+              <span>{{ object.phonePrice }} ₹</span>
+            </p>
+
+            <p class="lead font-weight-bold">Description</p>
+
+            <p>{{ object.phoneDescription }}</p>
+
+            <a href="/add-to-cart/{{object.pk}}" class="btn btn-primary btn-md my-0 p">
+                Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(function(){
+        $("input[name='quantity']").change(function(){
+            let id = $(this).attr("id")
+            let quantity = $(this).val()
+
+            //Ajay GET request
+            $.get("updatecart",{"id":id,"quantity":quantity},function(data,status){
+                alert(data)
+            }) 
+        })
+    })
+</script>
+
+    <div class="table-responsive text-nowrap">
+      <h2>Order Summary</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Product Price</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for item in cart.itemlist.all %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ item.phone.phoneName }}</td>
+            <td>{{ item.phone.phonePrice }} ₹</td>
+            <th><input style="width:80px;" class="form-control" type="number" min="1" value="{{item.quantity}}" id="{{item.pk}}" name="quantity"/></th>            
+
+            <td>{{ item.get_total_item_price }} ₹
+              <a style="color: red;" href="/remove-from-cart/{{item.pk}}">
+                <i class="fas fa-trash float-right"></i>
+              </a>
+            </td>
+          </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">Your cart is empty</td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <a class="btn btn-primary float-right" href="/">Continue Shoping</a>
+          </td>
+        </tr>
+        {% endfor %}
+        {% if cart.get_total %}
+        <tr>
+          <td colspan="4"><b>Order Total</b></td>
+          <td><b>{{ cart.get_total }} ₹</b></td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <a class='btn btn-warning float-right ml-2' href="{% url 'products:checkout' %}">Proceed to checkout</a>
+            <a class='btn btn-primary float-right' href="{% url 'products:home' %}">Continue shopping</a>
+          </td>
+
+        </tr>
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

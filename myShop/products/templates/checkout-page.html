@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+  <main>
+    <div class="container wow fadeIn">
+      <h2 class="my-3 h2 text-center">Checkout form</h2>
+      <div class="row">
+        <div class="col-md-8 mb-4">
+          <div class="card">
+            <form class="card-body">
+              <div class="md-form mb-5">
+                <input type="text" id="address" class="form-control" placeholder="Valid Address">
+                <label for="address" class="">Address</label>
+              </div>
+              <div class="md-form mb-5">
+                <input type="text" id="address-2" class="form-control" placeholder="Alternate Address">
+                <label for="address-2" class="">Address 2 (optional)</label>
+              </div>
+              <div class="md-form mb-5">
+                <input type="text" id="phone number" class="form-control" placeholder="Valid Phone Number">
+                <label for="phone number" class="">Phone Number</label>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-md-12 mb-4">
+                  <label for="country">Country</label>
+                  <select class="custom-select d-block w-100" id="country" required>
+                    <option value="">Choose...</option>
+                    <option>India</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <label for="state">State</label>
+                  <select class="custom-select d-block w-100" id="state" required>
+                    <option value="">Choose...</option>
+                    <option>Maharashtra</option>
+                    <option>Goa</option>
+                    <option>West Bengal</option>
+                    <option>Punjab</option>
+                    <option>Kerala</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please provide a valid state.
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <label for="zip">Zip</label>
+                  <input type="text" class="form-control" id="zip" placeholder="" required>
+                  <div class="invalid-feedback">
+                    Zip code required.
+                  </div>
+                </div>
+              </div>
+              <hr class="mb-4">
+              <a class='btn btn-primary float-none' href="{% url 'products:order-placed' %}">
+                Continue to checkout
+              </a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
